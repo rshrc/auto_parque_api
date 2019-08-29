@@ -5,16 +5,6 @@ from zone.models import Zone, Index, Slot
 admin.site.site_header = 'Parque Space'
 
 
-@admin.register(Zone)
-class ZoneAdmin(admin.ModelAdmin):
-    list_display = ['name']
-
-
-@admin.register(Index)
-class IndexAdmin(admin.ModelAdmin):
-    list_display = ['number']
-
-
 @admin.register(Slot)
 class SlotAdmin(admin.ModelAdmin):
-    list_display = ['zone', 'index', 'empty']
+    list_display = ['zone_name', 'index_number', 'empty']

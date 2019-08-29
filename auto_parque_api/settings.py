@@ -40,6 +40,9 @@ INSTALLED_APPS = [
 
     # zone app
     'zone',
+
+    # rest framework
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
