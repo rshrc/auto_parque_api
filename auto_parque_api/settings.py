@@ -43,6 +43,9 @@ INSTALLED_APPS = [
 
     # rest framework
     'rest_framework',
+
+    # entry_log app
+    'entry_log',
 ]
 
 MIDDLEWARE = [
