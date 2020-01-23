@@ -22,3 +22,11 @@ class Slot(models.Model):
 
     def __str__(self):
         return self.zone_name + " " + str(self.index_number)
+
+class CarSlot(models.Model):
+    slot_name = models.CharField(max_length=5, default="")
+    car_count = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.slot_name
+
