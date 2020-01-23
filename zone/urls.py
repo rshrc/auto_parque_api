@@ -1,12 +1,9 @@
 from django.urls import path, include
-from zone.views import (
-    SlotListAPIView, 
-    SlotDetailAPIView,
-    CarSlotIncreaseView,
-    )
+from zone import views
 
 urlpatterns = [
-    path('', SlotListAPIView.as_view()),
-    path('<int:id>/', SlotDetailAPIView.as_view()),
-    path('<int:id>/update/', CarSlotIncreaseView.as_view()),
+    path('', views.SlotListAPIView.as_view()),
+    path('<int:id>/', views.SlotDetailAPIView.as_view()),
+    path('<int:id>/update/', views.CarSlotUpdateView.as_view()),
+    path('list/', views.CarSlotListAPIView.as_view()),
 ]

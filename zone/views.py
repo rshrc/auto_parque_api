@@ -16,7 +16,7 @@ class SlotDetailAPIView(generics.RetrieveAPIView):
     serializer_class = SlotSerializer
 
 
-class CarSlotIncreaseView(generics.UpdateAPIView):
+class CarSlotUpdateView(generics.UpdateAPIView):
     queryset = CarSlot.objects.all()
     serializer_class = CarSlotSerializer
     lookup_field = 'id'
@@ -26,6 +26,11 @@ class CarSlotIncreaseView(generics.UpdateAPIView):
         instance.car_count = request.data.get("car_count")
         instance.save()  
         return Response(status=status.HTTP_200_OK)
+
+
+class CarSlotListAPIView(generics.ListAPIView):
+    queryset = CarSlot.objects.all()
+    serializer_class = CarSlotSerializer
 
 
 class CarSlotDecreaseView(generics.UpdateAPIView):
