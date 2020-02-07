@@ -18,7 +18,7 @@ def get_slot(request, id):
         return Response(serializer.data)
 
 
-@api_view(['GET'])
+@api_view(['GET',])
 def get_slot_list(request):
 
     try:
@@ -31,16 +31,17 @@ def get_slot_list(request):
         return Response(serializer.data)
 
 
-@api_view(['PUT'])
+@api_view(['PUT',])
 def update_slot(request, id):
-
+    print("slot called")
     try:
         slot = Slot.object.get(id=id)
+        print(slot)
     except:
         return Response(status=status.HTTP_404_NOT_FOUND)
     
     if request.method == 'PUT':
-        serializer = SlotSerializer(slot, data=request.data)
+        serializer = SlotSerializer(slot, data=request.data, partial=True)
         data = {}
 
         if serializer.is_valid():
@@ -48,3 +49,15 @@ def update_slot(request, id):
             data['success'] = "update successful"
             return Response(data=data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class SlotUpdateView(generics.UpdateAPIView):
+    queryset = Slot.objects.all()
+    serializer_class = SlotSerializer
+    lookup_field = 'id'
+   
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.car_count = request.data.get("car_count")
+        instance.save()  
+        return Response(status=status.HTTP_200_OK)
