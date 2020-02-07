@@ -2,8 +2,7 @@ from django.urls import path, include
 from zone import views
 
 urlpatterns = [
-    path('', views.SlotListAPIView.as_view()),
-    path('<int:id>/', views.SlotDetailAPIView.as_view()),
-    path('<int:id>/update/', views.CarSlotUpdateView.as_view()),
-    path('list/', views.CarSlotListAPIView.as_view()),
+    path('slot/<int:id>/', views.get_slot),
+    path('slot/list/', views.get_slot_list),
+    path('slot/update/<int:id>', views.update_slot),
 ]
