@@ -4,6 +4,9 @@ from zone.serializers import SlotSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
+from django.core.mail import EmailMessage
+import math
+import random
 
 @api_view(['GET'])
 def get_slot(request, id):
@@ -61,3 +64,14 @@ class SlotUpdateView(generics.UpdateAPIView):
         instance.car_count = request.data.get("car_count")
         instance.save()  
         return Response(status=status.HTTP_200_OK)
+
+
+
+def send_email(request):
+    email = EmailMessage(
+        'Title',
+        f'Email {random.randint(0, 100)}',
+        'my-email',
+        ['my-receive-email']
+    )
+    email.send()
